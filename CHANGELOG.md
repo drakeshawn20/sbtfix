@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Screenshots of every state in the README, in light and dark mode
+- `sbtfix --screenshots <dir>` regenerates them
+- Release notes are now built from this changelog automatically
+
 ## 1.0.0
 
 First public release.

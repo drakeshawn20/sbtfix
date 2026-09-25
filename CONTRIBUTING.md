@@ -42,6 +42,27 @@ Guidelines:
 - Match the style of the code around your change, and keep pull requests focused.
 - Describe how you tested, including the headphone model and firmware version.
 
+## Screenshots
+
+The images in `docs/screenshots` are rendered from the real UI with sample data:
+
+```sh
+./build.sh
+build/sbtfix.app/Contents/MacOS/sbtfix --screenshots "$PWD/docs/screenshots"
+```
+
+The states are defined in `Sources/sbtfix/Screenshots.swift`.
+
+## Making a release
+
+1. Rename `## Unreleased` in `CHANGELOG.md` to the new version, e.g. `## 1.1.0`.
+2. Commit, then tag and push:
+   ```sh
+   git tag v1.1.0 && git push origin main v1.1.0
+   ```
+3. The Release workflow tests, builds and stamps the version, then publishes `sbtfix.zip` with
+   that changelog section as the release notes.
+
 ## Ideas / roadmap
 
 - Equalizer presets and custom bands

@@ -370,3 +370,22 @@ extension HeadphoneController: IOBluetoothRFCOMMChannelDelegate {
 private func hex(_ bytes: [UInt8]) -> String {
     bytes.map { String(format: "%02x", $0) }.joined(separator: " ")
 }
+
+// MARK: - Screenshot support
+
+extension HeadphoneController {
+    /// A controller with fixed state and no Bluetooth, used to render README screenshots.
+    static func preview(status: Status, name: String = "WH-1000XM5",
+                        batteries: Batteries = Batteries(single: BatteryLevel(level: 72, charging: false)),
+                        ambient: AmbientState = AmbientState(mode: .noiseCancelling, focusOnVoice: false, level: 20),
+                        speakToChat: Bool? = false) -> HeadphoneController {
+        let c = HeadphoneController()
+        c.status = status
+        c.deviceName = name
+        c.profile = DeviceProfile.forName(name)
+        c.batteries = batteries
+        c.ambient = ambient
+        c.speakToChat = speakToChat
+        return c
+    }
+}

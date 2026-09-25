@@ -8,6 +8,15 @@ struct SbtfixApp: App {
     init() {
         let c = HeadphoneController()
         _controller = StateObject(wrappedValue: c)
+        let args = CommandLine.arguments
+        if let i = args.firstIndex(of: "--screenshots"), i + 1 < args.count {
+            let dir = URL(fileURLWithPath: args[i + 1])
+            DispatchQueue.main.async {
+                Screenshots.render(to: dir)
+                exit(0)
+            }
+            return
+        }
         // Connect at launch rather than when the menu is first opened.
         DispatchQueue.main.async { c.start() }
     }
